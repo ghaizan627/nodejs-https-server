@@ -139,9 +139,3 @@ This project helped me understand:
 - [ ] Cookie Parser
 - [ ] Authentication
 - [ ] Mini Express Framework
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.

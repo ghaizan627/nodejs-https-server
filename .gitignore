@@ -1,0 +1,6 @@
+cert/*.pem
+node_modules/
+.env
+logs/*.log
+.cache/
+.vscode/

@@ -26,7 +26,7 @@ const serverSsl = https.createServer(options, (req, res) => {
     const filePath = path.join(__dirname, "public", url);
     const ext = path.extname(filePath);
     const contentType = mimeTypes[ext] || "application/octet-stream";
-    return sendFile(res, filePath, contentType);
+    return sendFile(res, 200, filePath, contentType);
   }
 
   if (!fileName) {
@@ -36,7 +36,7 @@ const serverSsl = https.createServer(options, (req, res) => {
     return res.end("404 Not Found");
   }
   const filePath = path.join(__dirname, "public", fileName);
-  sendFile(res, filePath, "text/html");
+  sendFile(res, 200, filePath, "text/html");
 });
 
 serverSsl.listen(PORT, () => {

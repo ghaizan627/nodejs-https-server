@@ -1,5 +1,5 @@
 import fs from "fs";
-function sendFile(res, filePath, contentType) {
+function sendFile(res, statusCode, filePath, contentType) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404, {
@@ -7,7 +7,7 @@ function sendFile(res, filePath, contentType) {
       });
       return res.end("404 File Not Found");
     }
-    res.writeHead(200, {
+    res.writeHead(statusCode, {
       "content-Type": contentType,
     });
     res.end(data);

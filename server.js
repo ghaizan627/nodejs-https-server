@@ -1,4 +1,4 @@
-import http from "http";
+import http, { STATUS_CODES } from "http";
 import https from "https";
 import fs from "fs";
 import path from "path";
@@ -30,10 +30,9 @@ const serverSsl = https.createServer(options, (req, res) => {
   }
 
   if (!fileName) {
-    res.writeHead(404, {
-      "content-Type": "text/plain",
-    });
-    return res.end("404 Not Found");
+    const errorPage = routes["/404"];
+    const errorPath = path.join(__dirname, "public", errorPage);
+    return sendFile(res, 404, errorPath, "text/html");
   }
   const filePath = path.join(__dirname, "public", fileName);
   sendFile(res, 200, filePath, "text/html");

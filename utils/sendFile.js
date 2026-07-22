@@ -1,5 +1,5 @@
 import fs from "fs";
-function sendFile(res, statusCode, filePath, contentType) {
+function sendFile(res, statusCode = 200, filePath, contentType) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404, {

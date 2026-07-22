@@ -132,7 +132,7 @@ This project helped me understand:
 
 ## 📌 Future Improvements
 
-- [ ] Custom 404 Page
+- [✅] Custom 404 Page
 - [ ] Logger
 - [ ] REST API
 - [ ] Body Parser

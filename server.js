@@ -1,4 +1,3 @@
-import http, { STATUS_CODES } from "http";
 import https from "https";
 import fs from "fs";
 import path from "path";
@@ -6,6 +5,7 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import mimeTypes from "./utils/mimeTypes.js";
 import sendFile from "./utils/sendFile.js";
+import logger from "./utils/logger.js";
 import routes from "./routes/routes.js";
 import options from "./config/ssl.js";
 
@@ -16,6 +16,7 @@ const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 8000;
 
 const serverSsl = https.createServer(options, (req, res) => {
+  logger(req);
   const url = req.url;
   const fileName = routes[req.url];
   if (
@@ -35,7 +36,7 @@ const serverSsl = https.createServer(options, (req, res) => {
     return sendFile(res, 404, errorPath, "text/html");
   }
   const filePath = path.join(__dirname, "public", fileName);
-  sendFile(res, 200, filePath, "text/html");
+  return sendFile(res, 200, filePath, "text/html");
 });
 
 serverSsl.listen(PORT, () => {
